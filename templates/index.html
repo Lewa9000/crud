@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <a href="addnew/" class="btn btn-primary">+</a>
+        <br><br>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Тикет</th>
+                    <th>Обращение</th>
+                    <th>Поступление</th>
+                    <th>Принятие обращения</th>
+                    <th>Инициатор обращения</th>
+                    <th>Первичный анализ обращения</th>
+                    <th>Класификация обращения</th>
+                    <th>Статус обращения</th>
+                    <th>Период реализации обращения</th>
+                    <th>Ответственный с нашей стороны</th>
+                    <th>Возраст обращения</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rs in treatments %}
+                    <tr>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.name }}</td>
+                        <td>{{ rs.recieved_dt }}</td>
+                        <td>{{ rs.accepted_dt }}</td>
+                        <td>{{ rs.inital_name }}</td>
+                        <td>{{ rs.inital_analysis }}</td>
+                        <td>{{ rs.classification }}</td>
+                        <td>{{ rs.status }}</td>
+                        <td>{{ rs.impl_dt }}</td>
+                        <td>{{ rs.responsible }}</td>
+                        <td>{{ rs.age_td }}</td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+</div>
+ 
+{% endblock content %}

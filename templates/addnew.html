@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action = "/add" method = "post"> 
+    <div class="mb-3">
+        <label>Обращение</label>
+        <input type = "text" name = "name" placeholder = "Обращение" class="form-control" required/>
+    </div> 
+    <div class="mb-3">
+        <label>Поступление обращения</label>
+        <input type = "datetime-local" name = "recieved_dt" required />
+    </div> 
+    <div class="mb-3">
+        <label>Принятие обращения</label>
+        <input type = "datetime-local" name = "accepted_dt" required />
+    </div> 
+    <div class="mb-3">
+        <label>Инициатор обращения</label>
+        <input type = "text" name = "inital_name" placeholder = "Инициатор обращения" class="form-control" required />
+    </div> 
+    <div class="mb-3">
+        <label>Первичный анализ обращения</label>
+        <input type = "text" name = "inital_analysis" placeholder = "Первичный анализ обращения" class="form-control" required />
+    </div> 
+    <div class="mb-3">
+        <label>Класификация обращения</label>
+        <select name="classification">
+            <option value="Аварийный">Аварийный</option>
+            <option value="Срочный">Срочный</option>
+            <option value="Полусрочный">Полусрочный</option>
+            <option value="Несрочный">Несрочный</option>
+        </select>
+    </div> 
+    <div class="mb-3">
+        <label>Статус</label>
+        <select name="current_status">
+            <option value="Поступил">Поступил</option>
+            <option value="Принят">Принят</option>
+            <option value="В работе">В работе</option>
+            <option value="Завершён">Завершён</option>
+        </select>
+    </div> 
+    <div class="mb-3">
+        <label>Период реализации обращения</label>
+        <input type = "datetime-local" name = "impl_dt" required />
+    </div> 
+    <div class="mb-3">
+        <label>Ответственный с нашей стороны</label>
+        <input type = "text" name = "responsible" placeholder = "Ответственный с нашей стороны" class="form-control" required />
+    </div> 
+    <input type = "submit" value = "Добавить" class="btn btn-primary mb-3"/>  
+ </form> 
+  
+{% endblock content %}
