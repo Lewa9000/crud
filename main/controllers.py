@@ -1,31 +1,13 @@
 from datetime import datetime
 
-from fastapi import FastAPI, Request, Depends, Form, status
-from fastapi.templating import Jinja2Templates
+from fastapi import Request, Depends, Form, status
 from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
-from fastapi.staticfiles import StaticFiles
  
 import models
-from db import engine, sessionlocal
+from entities import app, get_db, templates
 
-models.Base.metadata.create_all(bind=engine)
- 
-templates = Jinja2Templates(directory="templates")
- 
-app = FastAPI()
- 
-app.mount("/static", 
-          StaticFiles(directory="static"), 
-          name="static")
- 
-def get_db():
-    db = sessionlocal()
-    try:
-        yield db
-    finally:
-        db.close()
- 
+
 @app.get("/")
 async def home(request: Request, 
                db: Session = Depends(get_db)):
