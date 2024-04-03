@@ -3,6 +3,9 @@ from db import Base
  
 
 class Treatment(Base):
+    """
+    Модель описывает объект базы данных в журнале обращений
+    """
     __tablename__ = 'treatments'
     id = Column(Integer, primary_key=True)
     name = Column(String(150))
@@ -16,5 +19,9 @@ class Treatment(Base):
     responsible = Column(String)
     age_td = Column(String)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Магический метод.
+        Возвращает представление объекта в виде строки
+        """
         return f"<Treatment {self.id}: {self.name}>"

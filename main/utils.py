@@ -13,6 +13,11 @@ with open('users.toml', 'r') as config_file:
 
 
 def get_hashsum(password: str) -> str:
+    """
+    Подсаливает и преобразует строку с паролем в хэш-сумму
+
+    @password: str - пароль от пользователя
+    """
     hashsum = hashlib.sha256(
             (password + PASSWORD_SALT).encode()
             ).hexdigest()
@@ -20,6 +25,10 @@ def get_hashsum(password: str) -> str:
 
 
 def add_new_user():
+    """
+    Утилитарная функция позволяющая зарегестрировать нового пользователя.
+    В базу пользователей будет сохранено имя и хэш-сумма пароля
+    """
     username = input('Введите имя пользователя:')
     password = getpass('Введите имя пользователя:', )
     password_hashsum = get_hashsum(password)
@@ -32,7 +41,8 @@ parser = ArgumentParser(
     description='Выводит журнал обращений в виде сайта. Включает себя логин и базу данных')
 
 parser.add_argument('-n', '--new_user',
-                    action='store_true')                   
+                    action='store_true',
+                    help='Добавить нового пользователя')                   
 
 __all__ = [
         'users',
