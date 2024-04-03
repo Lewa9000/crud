@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
  
 import models
-from utils import users
+from utils import users, get_hashsum
 from entities import app, get_db, templates
 
 
@@ -19,22 +19,24 @@ async def process_main_page(request: Request):
 @app.post("/login")
 async def login_submit(request: Request,
                        db: Session = Depends(get_db),
-                       login: str = Form(...),
+                       username: str = Form(...),
                        password: str = Form(...)
                        ):
     treatments = db.query(
             models.Treatment).order_by(
                     models.Treatment.id.desc())
-    user_password_hashsum = users.get(login)
-    password_hashsum = password
-
-    if password_hashsum == 
-    return templates.TemplateResponse("index.html", 
+    user_password_hashsum = users.get(username)
+    password_hashsum = get_hashsum(password)
+    if password_hashsum == user_password_hashsum:
+        return templates.TemplateResponse("index.html", 
                                       {
                                           "request": request, 
                                           "treatments": treatments
                                           }
                                       )
+    else:
+        return templates.TemplateResponse('login.html', {"request": request})
+
  
 @app.post("/add")
 async def add(request: Request, 
