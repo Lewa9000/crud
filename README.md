@@ -1,10 +1,11 @@
 ## Установка
 
 1. установить интерпритатор python версии 3.11+
-2. pip install -U pip && pip install -r requirements.txt
-3. python -m venv env
-4. source env/bin/activate
-5. echo '<Любая строчка>' >> '.password_salt
+2. python -m venv env
+3. source env/bin/activate
+4. pip install -U pip && pip install -r requirements.txt
+5. deactivate
+6. echo '<Любая строчка>' >> '.password_salt
 
 ## Запуск
 
